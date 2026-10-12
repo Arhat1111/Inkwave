@@ -1,0 +1,13 @@
+InkWaves V10.6 deployment
+
+1. Upload every file in this GITHUB-WEBSITE folder to the public GitHub repository.
+2. Do NOT upload PRIVATE-CLOUDFLARE-WORKER/worker.js to GitHub.
+3. In Cloudflare Workers & Pages, open the existing inkwaves-payments worker, replace its code with PRIVATE-CLOUDFLARE-WORKER/worker.js, and Deploy.
+4. Keep the existing RAZORPAY_KEY_SECRET secret unchanged.
+5. Verify /health returns version 10.6 before accepting orders.
+
+Order policy:
+- Minimum merchandise order value: ₹200 (after bundle offers, before coupon and delivery).
+- Free delivery when merchandise value is above ₹350.
+- Otherwise fixed delivery charge: ₹69.
+- Coupon discounts apply to merchandise, not delivery.

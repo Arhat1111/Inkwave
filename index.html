@@ -6,54 +6,43 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="InkWave — affordable 300 GSM posters and custom prints by student founders from NITK Surathkal." name="description"/>
 <meta content="#ffffff" name="theme-color"/>
-<title>InkWave — Posters for walls with personality · V7.4</title>
+<title>InkWave — Posters for walls with personality</title>
 <link href="assets/inkwaves-icon.webp" rel="icon" type="image/webp"/>
-<link href="styles.css?v=80" rel="stylesheet"/>
+<link href="css/styles.css?v=106" rel="stylesheet"/>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="dns-prefetch" href="//drive.google.com">
 </head>
 <body>
 <header class="site-header site-header-clean">
 <div class="header-left">
 <button aria-expanded="false" aria-label="Open menu" class="menu-button" id="menuButton"><span></span><span></span><span></span></button>
 <nav aria-label="Primary navigation" class="desktop-nav desktop-nav-clean">
-  <div class="nav-menu-group">
-    <button class="nav-menu-trigger" type="button" aria-haspopup="true">SHOP <span>⌄</span></button>
-    <div class="nav-menu-dropdown">
-      <a href="#shop"><small>01</small><span>Bestsellers</span></a>
-      <a href="#categories"><small>02</small><span>Categories</span></a>
-      <a href="#offers"><small>03</small><span>Offers</span></a>
-    </div>
-  </div>
-  <a href="#custom">CUSTOM</a>
-  <a href="#custom-polaroid">POLAROIDS</a>
-</nav>
+<div class="nav-menu-group">
+<button aria-haspopup="true" class="nav-menu-trigger" type="button">SHOP <span>⌄</span></button>
+<div class="nav-menu-dropdown"><a href="#categories"><small>01</small><span>Categories</span></a><a href="#offers"><small>02</small><span>This Week's Wall Drop</span></a><a href="#shop"><small>03</small><span>Studio Picks</span></a></div>
+</div>
+
+
+<a href="#custom-polaroid">POLAROIDS</a><a href="#custom">CUSTOM</a></nav>
 </div>
 <a aria-label="InkWave home" class="brand brand-image navbar-wordmark" href="#top"><img alt="InkWaves — Posters That Inspire" src="assets/inkwaves-wordmark.webp"/></a>
 <div class="header-actions">
-  <div class="nav-menu-group nav-menu-group-right desktop-discover">
-    <button class="nav-menu-trigger" type="button" aria-haspopup="true">DISCOVER <span>⌄</span></button>
-    <div class="nav-menu-dropdown nav-menu-dropdown-right">
-      <a href="#about-preview"><small>01</small><span>Why InkWave</span></a>
-      <a href="#reviews"><small>02</small><span>Reviews</span></a>
-      <a href="#story"><small>03</small><span>About</span></a>
-    </div>
-  </div>
-  <button aria-label="Search posters" class="icon-btn" id="searchToggle"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
-  <button aria-label="Open cart" class="cart-button" id="cartButton"><svg viewbox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg><span id="cartCount">0</span></button>
+<div class="nav-menu-group nav-menu-group-right desktop-discover">
+<button aria-haspopup="true" class="nav-menu-trigger" type="button">DISCOVER <span>⌄</span></button>
+<div class="nav-menu-dropdown nav-menu-dropdown-right">
+<a href="#about-preview"><small>01</small><span>Why InkWave</span></a>
+<a href="#reviews"><small>02</small><span>Reviews</span></a>
+<a href="#story"><small>03</small><span>About</span></a>
+</div>
+</div>
+<button aria-label="Search posters" class="icon-btn" id="searchToggle"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+<button aria-label="Open cart" class="cart-button" id="cartButton"><svg viewbox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg><span id="cartCount">0</span></button>
 </div>
 </header>
 <nav aria-label="Poster categories" class="category-bar navbar-category-bar" id="categoryBar"></nav>
-<nav class="mobile-menu" id="mobileMenu"><a href="#shop">Shop Bestsellers</a><a href="#categories">Shop by Category</a><a href="#offers">Bundle Offers</a><a href="#custom">Custom Posters</a><a href="#custom-polaroid">Custom Polaroids</a><a href="#about-preview">Why InkWave</a><a href="#reviews">Customer Reviews</a><a href="#story">About</a></nav>
+<nav class="mobile-menu" id="mobileMenu"><a href="#categories">Shop by Category</a><a href="#offers">This Week's Wall Drop</a><a href="#custom-polaroid">Polaroids</a><a href="#shop">InkWave Studio Picks</a><a href="#custom">Start Customizing</a><a href="#reviews">Customer Reviews</a><a href="#about-preview">Why InkWave</a><a href="#story">About</a></nav>
 <main id="top">
-
-
-
-
-
-
-
-
-
-
 <section class="hero">
 <div class="hero-copy">
 <div class="stars">★★★★★</div>
@@ -70,56 +59,61 @@
 <div class="slider-price">FROM <strong>₹19</strong></div>
 <div class="slider-caption">AUTOMATIC POSTER WALL ↓</div>
 </div>
-</section><section class="benefit-strip"><span>PRINTED IN INDIA</span><span>✦</span><span>300 GSM QUALITY</span><span>✦</span><span>MATTE LAMINATED PAPER</span><span>✦</span><span>SECURE RAZORPAY CHECKOUT</span></section><section class="shop section-pad" id="shop">
-<div class="title-row"><div><p class="overline">BESTSELLERS</p><h2 id="shopTitle">SHOP BESTSELLERS</h2></div><p class="section-description">Every poster is available in all four sizes with transparent, fixed pricing.</p></div>
-<div class="shop-toolbar"><div class="filter-chips" id="filterChips"></div><label class="search-field" id="searchField"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="productSearch" placeholder="Search InkWave" type="search"/></label></div>
-<div class="product-grid" id="productGrid"></div><div class="empty-state" hidden="" id="emptyState">New posters are being added soon.</div><div class="home-products-cta"><a class="button button-dark" href="products.html">VIEW ALL PRODUCTS →</a></div>
-</section><section class="poster-categories section-pad" id="categories">
+</section><section class="benefit-strip"><span>PRINTED IN INDIA</span><span>✦</span><span>300 GSM QUALITY</span><span>✦</span><span>MATTE LAMINATED PAPER</span><span>✦</span><span>SECURE RAZORPAY CHECKOUT</span></section><section class="poster-categories section-pad" id="categories">
 <div class="title-row"><div><p class="overline">FIND YOUR WALL'S MOOD</p><h2 id="categoriesTitle">SHOP BY CATEGORY</h2></div><p class="section-description">Pick a category, then choose A6, A5, A4 or A3 on any product.</p></div>
-<div class="category-grid" id="categoryGrid"></div>
+<div aria-label="Shop poster categories carousel" class="category-carousel">
+<button aria-label="Previous categories" class="category-carousel-arrow category-carousel-prev" id="categoryPrev" type="button">←</button>
+<div aria-label="Poster categories" class="category-grid category-slider-track" id="categoryGrid" tabindex="0"></div>
+<button aria-label="Next categories" class="category-carousel-arrow category-carousel-next" id="categoryNext" type="button">→</button>
+</div>
+<div aria-hidden="true" class="category-slider-meta"><span id="categorySliderStatus">01 / 01</span><div class="category-slider-progress"><i id="categorySliderThumb"></i></div><span>SWIPE TO EXPLORE</span></div>
 </section><section class="offers section-pad" id="offers">
 <div class="title-row drop-title-row"><div><p class="overline drop-overline">NITK FRESHER DROP — LIMITED STOCK</p><h2>THIS WEEK'S WALL DROP</h2></div><p class="section-description">Limited-stock poster deals for this week. Mix designs in the same size and eligible bundle savings are calculated automatically in your bag.</p></div>
 <div class="offer-grid" id="offerGrid"></div>
+</section><section class="custom-polaroid-section section-pad" id="custom-polaroid">
+<div class="polaroid-builder-copy">
+<p class="overline">CUSTOMIZED POLAROIDS</p>
+<h2>TURN YOUR PHOTOS INTO POLAROIDS.</h2>
+<p class="polaroid-builder-description">Upload your favourite photos and turn them into small keepsakes for your wall, desk, hostel room or memory board.</p>
+<div class="polaroid-price-cards">
+<article><span>01</span><strong>1 POLAROID</strong><b>₹10</b></article>
+<article class="featured"><span>20</span><strong>20 POLAROIDS</strong><b>₹100</b><small>BEST VALUE</small></article>
+</div>
+<p class="polaroid-pricing-note">Upload between 1 and 20 photos. The 20-photo bundle is automatically priced at ₹100; otherwise each polaroid is ₹10.</p>
+</div>
+<div class="polaroid-builder-panel">
+<div class="polaroid-builder-head"><span>YOUR PHOTOS</span><strong id="polaroidUploadCount">0 / 20</strong></div>
+<label class="polaroid-upload-button" for="polaroidUpload">
+<input accept="image/png,image/jpeg,image/webp" id="polaroidUpload" multiple="" type="file"/>
+<span>UPLOAD PHOTOS</span><small>JPG, PNG or WebP · maximum 20 photos</small>
+</label>
+<div aria-label="Sample custom polaroid preview" class="polaroid-preview-empty polaroid-sample-stage" id="polaroidPreviewEmpty">
+<img alt="Customized polaroid wall display with printed photos and warm fairy lights" class="polaroid-retro-sample" src="assets/polaroid-wall-sample.webp"/>
+<div class="sample-polaroid-copy"><strong>CUSTOMIZED POLAROIDS, MADE FROM YOUR PHOTOS.</strong><span>Upload your photos above to create your own polaroid wall set.</span></div>
+</div>
+<div class="polaroid-preview-grid" id="polaroidPreviewGrid"></div>
+<div class="polaroid-builder-total">
+<div><small>CUSTOM POLAROID TOTAL</small><strong id="polaroidTotal">₹0</strong><span id="polaroidPriceHint">Upload at least 1 photo</span></div>
+<button class="button button-dark" disabled="" id="addPolaroidsToBag" type="button">ADD POLAROIDS TO BAG →</button>
+</div>
+</div>
+</section><section class="shop section-pad" id="shop">
+<div class="title-row"><div><p class="overline">INKWAVE STUDIO PICK</p><h2 id="shopTitle">BEST SELLERS</h2></div><p class="section-description">Every poster is available in all four sizes with transparent, fixed pricing.</p></div>
+<div class="shop-toolbar"><div class="filter-chips" id="filterChips"></div><label class="search-field" id="searchField"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="productSearch" placeholder="Search InkWave" type="search"/></label></div>
+<div class="product-grid" id="productGrid"></div><div class="empty-state" hidden="" id="emptyState">New posters are being added soon.</div><div class="home-products-cta"><a class="button button-dark" href="products.html">VIEW ALL PRODUCTS →</a></div>
 </section><section class="custom-section section-pad" id="custom">
 <div class="custom-copy"><p class="overline">CUSTOM POSTERS</p><h2 id="customTitle">BUILD A POSTER THAT IS COMPLETELY YOURS.</h2><p id="customDescription"></p><div class="custom-points"><span>01 · UPLOAD</span><span>02 · PICK SIZE</span><span>03 · PREVIEW</span><span>04 · ORDER</span></div><button class="button button-dark" data-custom-product="">START CUSTOMIZING →</button></div>
 <div class="custom-stage"><div class="custom-grid"></div><div class="custom-poster custom-back"><img alt="Custom poster example" src="assets/poster-chaos.svg"/></div><div class="custom-poster custom-front"><img alt="Custom poster preview" src="assets/poster-custom.svg"/></div><div class="custom-sticker">YOUR ART<br/>YOUR WALL ✦</div></div>
-</section><section class="custom-polaroid-section section-pad" id="custom-polaroid" data-build="v7.9">
-<div class="polaroid-builder-copy">
-  <p class="overline">CUSTOMIZED POLAROIDS</p>
-  <h2>TURN YOUR PHOTOS INTO POLAROIDS.</h2>
-  <p class="polaroid-builder-description">Upload your favourite photos and turn them into small keepsakes for your wall, desk, hostel room or memory board.</p>
-  <div class="polaroid-price-cards">
-    <article><span>01</span><strong>1 POLAROID</strong><b>₹10</b></article>
-    <article class="featured"><span>20</span><strong>20 POLAROIDS</strong><b>₹100</b><small>BEST VALUE</small></article>
-  </div>
-  <p class="polaroid-pricing-note">Upload between 1 and 20 photos. The 20-photo bundle is automatically priced at ₹100; otherwise each polaroid is ₹10.</p>
-</div>
-<div class="polaroid-builder-panel">
-  <div class="polaroid-builder-head"><span>YOUR PHOTOS</span><strong id="polaroidUploadCount">0 / 20</strong></div>
-  <label class="polaroid-upload-button" for="polaroidUpload">
-    <input id="polaroidUpload" type="file" accept="image/png,image/jpeg,image/webp" multiple />
-    <span>UPLOAD PHOTOS</span><small>JPG, PNG or WebP · maximum 20 photos</small>
-  </label>
-  <div class="polaroid-preview-empty polaroid-sample-stage" id="polaroidPreviewEmpty" aria-label="Sample custom polaroid preview">
-    <img class="polaroid-retro-sample" src="assets/polaroid-wall-sample.webp?v=83" alt="Customized polaroid wall display with printed photos and warm fairy lights"/>
-    <div class="sample-polaroid-copy"><strong>CUSTOMIZED POLAROIDS, MADE FROM YOUR PHOTOS.</strong><span>Upload your photos above to create your own polaroid wall set.</span></div>
-  </div>
-  <div class="polaroid-preview-grid" id="polaroidPreviewGrid"></div>
-  <div class="polaroid-builder-total">
-    <div><small>CUSTOM POLAROID TOTAL</small><strong id="polaroidTotal">₹0</strong><span id="polaroidPriceHint">Upload at least 1 photo</span></div>
-    <button class="button button-dark" id="addPolaroidsToBag" type="button" disabled>ADD POLAROIDS TO BAG →</button>
-  </div>
-</div>
-</section><section class="quality-grid section-pad" id="about-preview"><div class="why-heading"><p class="overline">WHY INKWAVE</p><h2>MADE FOR BETTER WALLS.</h2></div>
-<article><span>01</span><h3>300 GSM QUALITY</h3><p>Thick paper stock that feels substantial and holds colour sharply.</p></article>
-<article><span>02</span><h3>CUSTOM CREATIONS</h3><p>Turn your own photos, graphics and artwork into an InkWave print.</p></article>
-<article><span>03</span><h3>MATTE LAMINATED PAPER</h3><p>A low-glare laminated finish designed for cleaner-looking wall displays.</p></article>
 </section><section class="reviews-section section-pad" id="reviews">
 <div class="title-row reviews-heading"><div><p class="overline">FROM THE INKWAVE COMMUNITY</p><h2>CUSTOMER WALL PHOTOS / REVIEWS</h2></div><div class="review-summary"><strong id="reviewAverage">5.0</strong><span aria-hidden="true" class="review-summary-stars">★★★★★</span><small id="reviewCount">Customer reviews</small></div></div>
 <div class="reviews-viewport">
 <div class="reviews-track" id="reviewsTrack"></div>
 </div>
 <div class="reviews-footer"><p>Reviews are managed from the InkWave control panel.</p><div class="review-controls"><button aria-label="Previous reviews" id="reviewPrev">←</button><button aria-label="Next reviews" id="reviewNext">→</button></div></div>
+</section><section class="quality-grid section-pad" id="about-preview"><div class="why-heading"><p class="overline">WHY INKWAVE</p><h2>MADE FOR BETTER WALLS.</h2></div>
+<article><span>01</span><h3>300 GSM QUALITY</h3><p>Thick paper stock that feels substantial and holds colour sharply.</p></article>
+<article><span>02</span><h3>CUSTOM CREATIONS</h3><p>Turn your own photos, graphics and artwork into an InkWave print.</p></article>
+<article><span>03</span><h3>MATTE LAMINATED PAPER</h3><p>A low-glare laminated finish designed for cleaner-looking wall displays.</p></article>
 </section><section class="story section-pad" id="story">
 <div class="story-visual"><div class="story-sun"></div><div class="story-type">NITK<br/>SURATHKAL</div><div class="story-wave"></div><span>WHERE INKWAVE STARTED</span></div>
 <div class="story-copy"><p class="overline">ABOUT INKWAVE</p><h2 id="aboutTitle">FROM A HOSTEL ROOM TO YOUR WALL.</h2><p id="aboutBody"></p><a href="about.html">READ OUR STORY →</a></div>
@@ -130,7 +124,7 @@
 <details><summary>How are payments processed?<span>+</span></summary><p>Checkout uses Razorpay for supported UPI, cards and other enabled payment methods.</p></details>
 </div></section></main>
 <footer><div class="footer-top"><div><div class="footer-brand footer-brand-image"><img alt="InkWaves" src="assets/inkwaves-wordmark.webp"/></div><p>POSTERS FOR WALLS WITH PERSONALITY.</p></div><div class="footer-columns"><div><strong>SHOP</strong><a href="products.html">Products</a><a href="#categories">Categories</a><a href="#offers">Offers</a><button data-custom-product="">Custom build</button><a href="#custom-polaroid">Custom polaroids</a></div><div><strong>INFO</strong><a href="about.html">About</a><a href="#reviews">Reviews</a><a href="#faq">FAQs</a><a href="admin.html">Admin</a></div><div><strong>CONTACT</strong><a href="mailto:hello@inkwave.in" id="footerEmail">Email ↗</a><a href="https://instagram.com" id="footerInstagram" rel="noreferrer" target="_blank">Instagram ↗</a></div></div></div><div class="footer-bottom"><span>© 2026 INKWAVE INDIA</span><span>BUILT AT NITK SURATHKAL.</span></div></footer>
-<aside aria-hidden="true" class="cart-drawer" id="cartDrawer"><div class="drawer-head"><h2>YOUR BAG</h2><button class="close-btn" id="closeCart">×</button></div><div class="cart-items" id="cartItems"></div><div class="cart-empty" id="cartEmpty"><div class="empty-art">✦</div><h3>YOUR WALL LOOKS LONELY.</h3><p>Add a poster to get started.</p></div><div class="cart-footer" hidden="" id="cartFooter"><p class="offer-message" id="offerMessage"></p><div class="coupon-row"><input id="couponInput" placeholder="Coupon code"/><button id="applyCoupon">APPLY</button></div><p class="coupon-message" id="couponMessage"></p><div class="price-line"><span>Poster + finish</span><strong id="cartSubtotal">₹0</strong></div><div class="price-line savings-line"><span>Size offer savings</span><strong id="offerSavings">− ₹0</strong></div><div class="price-line total-line"><span>Total</span><strong id="cartTotal">₹0</strong></div><button class="button button-dark full" id="checkoutButton">SECURE CHECKOUT</button><small>Payments secured by Razorpay</small></div></aside>
+<aside aria-hidden="true" class="cart-drawer" id="cartDrawer"><div class="drawer-head"><h2>YOUR BAG</h2><button class="close-btn" id="closeCart">×</button></div><div class="cart-items" id="cartItems"></div><div class="cart-empty" id="cartEmpty"><div class="empty-art">✦</div><h3>YOUR WALL LOOKS LONELY.</h3><p>Add a poster to get started.</p></div><div class="cart-footer" hidden="" id="cartFooter"><p class="offer-message" id="offerMessage"></p><div class="coupon-row"><input id="couponInput" placeholder="Coupon code"/><button id="applyCoupon">APPLY</button></div><p class="coupon-message" id="couponMessage"></p><div class="price-line"><span>Poster + finish</span><strong id="cartSubtotal">₹0</strong></div><div class="price-line savings-line"><span>Size offer savings</span><strong id="offerSavings">− ₹0</strong></div><div class="price-line delivery-line"><span>Delivery</span><strong id="deliveryCharge">₹69</strong></div><p class="delivery-message" id="deliveryMessage">Minimum order ₹200 · free delivery above ₹350.</p><div class="price-line total-line"><span>Final total</span><strong id="cartTotal">₹0</strong></div><button class="button button-dark full" id="checkoutButton">SECURE CHECKOUT</button><small>Minimum order ₹200 · free delivery above ₹350 · otherwise ₹69 delivery</small></div></aside>
 <div class="overlay" id="overlay"></div>
 <div aria-labelledby="modalTitle" aria-modal="true" class="modal" hidden="" id="productModal" role="dialog">
 <button class="modal-close" data-close-modal="">×</button>
@@ -145,8 +139,20 @@
 </div>
 <div class="modal-content"><span class="overline" id="modalCategory"></span><h2 id="modalTitle"></h2><p id="modalDescription"></p><div class="option-group"><div class="option-label"><strong>SIZE</strong><span id="selectedSizeText"></span></div><div class="segmented size-segmented" id="sizeOptions"></div><div class="selected-offer" id="selectedOffer"></div></div><div class="option-group"><div class="option-label"><strong>FINISH</strong></div><div class="segmented" id="finishOptions"></div></div><div class="modal-buy-row"><div><small>PER POSTER</small><strong id="modalPrice">₹0</strong></div><button class="button button-dark" id="addToCartButton">ADD TO BAG</button></div><a class="modal-full-page-link" href="products.html" id="modalFullPageLink">VIEW FULL PRODUCT PAGE →</a></div>
 </div>
-<div aria-labelledby="checkoutTitle" aria-modal="true" class="modal checkout-modal" hidden="" id="checkoutModal" role="dialog"><button class="modal-close" data-close-checkout="">×</button><div class="checkout-copy"><span class="overline">FINAL CHECKOUT</span><h2 id="checkoutTitle">DELIVERY DETAILS</h2><p>Enter your delivery details, then complete your payment securely with Razorpay.</p><form id="checkoutForm"><label>FULL NAME<input autocomplete="name" name="name" required=""/></label><div class="checkout-grid"><label>EMAIL<input autocomplete="email" name="email" required="" type="email"/></label><label>MOBILE NUMBER<input autocomplete="tel" inputmode="numeric" name="phone" pattern="[0-9]{10}" required="" type="tel"/></label></div><label>DELIVERY ADDRESS<input autocomplete="street-address" name="address" required=""/></label><div class="checkout-grid three"><label>CITY<input name="city" required=""/></label><label>STATE<input name="state" required=""/></label><label>PIN CODE<input inputmode="numeric" name="pincode" pattern="[0-9]{6}" required=""/></label></div><label class="whatsapp-optin"><input checked="" name="whatsappOptIn" type="checkbox" value="yes"/><span>Send my paid-order confirmation and invoice link to this mobile number on WhatsApp.</span></label><div class="razorpay-payment-card"><div class="razorpay-payment-head"><div><span>PAYMENT METHOD</span><strong>Razorpay Secure Payment</strong></div><span class="secure-pill">SECURE</span></div><div class="razorpay-methods"><span>UPI</span><span>CARDS</span><span>NETBANKING</span><span>WALLETS</span></div><p>You will be redirected to Razorpay to complete the payment securely.</p></div><button class="button button-dark full razorpay-pay-button" type="submit"><span>PAY SECURELY</span><strong id="checkoutAmount">₹0</strong></button></form><small class="checkout-security-note">Payment is completed on Razorpay. InkWaves does not collect or store your card or UPI credentials.</small></div></div>
+<div aria-labelledby="checkoutTitle" aria-modal="true" class="modal checkout-modal" hidden="" id="checkoutModal" role="dialog"><button class="modal-close" data-close-checkout="">×</button><div class="checkout-copy"><span class="overline">FINAL CHECKOUT</span><h2 id="checkoutTitle">DELIVERY DETAILS</h2><p>Enter your delivery details, then complete your payment securely with Razorpay.</p><form id="checkoutForm"><label>FULL NAME<input autocomplete="name" name="name" required=""/></label><div class="checkout-grid"><label>EMAIL<input autocomplete="email" name="email" required="" type="email"/></label><label>MOBILE NUMBER<input autocomplete="tel" inputmode="numeric" name="phone" pattern="[0-9]{10}" required="" type="tel"/></label></div><label>DELIVERY ADDRESS<input autocomplete="street-address" name="address" required=""/></label><div class="checkout-grid three"><label>CITY<input name="city" required=""/></label><label>STATE<input name="state" required=""/></label><label>PIN CODE<input inputmode="numeric" name="pincode" pattern="[0-9]{6}" required=""/></label></div><label class="whatsapp-optin"><input checked="" name="whatsappOptIn" type="checkbox" value="yes"/><span>Send my paid-order confirmation and invoice link to this mobile number on WhatsApp.</span></label><div class="razorpay-payment-card"><div class="razorpay-payment-head"><div><span>PAYMENT METHOD</span><strong>Razorpay Secure Checkout</strong></div><span class="secure-pill">SECURE</span></div><div class="razorpay-methods"><span>UPI</span><span>CARDS</span><span>NETBANKING</span><span>WALLETS</span></div><p>You will be redirected to Razorpay to complete the payment securely.</p><p class="checkout-delivery-note" id="checkoutDeliveryNote">Delivery charges are calculated from your product total.</p></div><button class="button button-dark full razorpay-pay-button" type="submit"><span>PAY SECURELY</span><strong id="checkoutAmount">₹0</strong></button></form><small class="checkout-security-note">Payment is completed on Razorpay. InkWaves does not collect or store your card or UPI credentials.</small></div></div>
 <div class="toast" id="toast" role="status"></div>
-<script src="default-data.js"></script><script type="module" src="firebase-store.js?v=82"></script><script src="payment-config.js?v=82"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script><script src="app.js?v=82"></script>
+<script src="js/default-data.js?v=105"></script><script>if(location.protocol==='file:'){document.write('<script src="js/local-preview-catalog-v103.js"><\/script>')}</script><script>
+(function(){
+  if(location.protocol !== 'http:' && location.protocol !== 'https:') return;
+  const s=document.createElement('script');
+  s.type='module';
+  s.src='js/firebase-store-v104.js?v=105';
+  s.onerror=function(){
+    window.INKWAVES_FIREBASE_LOAD_ERROR=new Error('Firebase module could not be loaded.');
+    window.dispatchEvent(new CustomEvent('inkwaves-firebase-error',{detail:{message:'Firebase module could not be loaded.'}}));
+  };
+  document.head.appendChild(s);
+})();
+</script><script src="js/payment-config.js?v=106"></script><script src="js/app-v106.js"></script>
 </body>
 </html>
