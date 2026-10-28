@@ -1,0 +1,15 @@
+INKWAVES V10.7 — DELIVERY / CHECKOUT FIX
+
+1. Upload the complete public website contents to GitHub, replacing V10.6 files.
+2. Deploy the separate V10.7 worker.js in the existing Cloudflare inkwaves-payments Worker.
+3. Keep the existing Cloudflare secret RAZORPAY_KEY_SECRET.
+4. Open /health and confirm version 10.7 before accepting orders.
+
+Rules enforced by BOTH storefront and Worker:
+- Minimum eligible product value: ₹200
+- ₹69 delivery for eligible product value ₹200 through ₹350
+- FREE delivery only above ₹350
+- Product offers are applied before checking delivery eligibility
+- Coupon discount does not reduce the delivery fee and does not change free-delivery eligibility
+
+V10.7 adds a server quote step so the checkout modal shows the same delivery and final payable amount that Razorpay will receive.
