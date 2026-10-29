@@ -1,0 +1,11 @@
+InkWaves V10.8 — DELIVERY UI HARD FIX
+
+Cloudflare Worker: keep the existing working V10.7 Worker. No Worker change is required.
+
+Upload ALL files in this package to the website repository, replacing existing files.
+The homepage now loads physical cache-busted files css/styles-v108.css and js/app-v108.js.
+
+Expected cart rules:
+- Product value below ₹200: Delivery ₹69 visible, checkout disabled.
+- Product value ₹200 through ₹350: Delivery ₹69, checkout enabled.
+- Product value above ₹350: Delivery FREE.
