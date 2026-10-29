@@ -1,0 +1,10 @@
+{
+  "website": "InkWaves",
+  "build": "10.9",
+  "delivery_fix": "backward-compatible-v105-v108",
+  "minimum_order_value": 200,
+  "delivery_charge": 69,
+  "free_delivery_above": 350,
+  "payment_worker": "https://inkwaves-payments.arhatshah123.workers.dev",
+  "required_worker_version": "10.7"
+}

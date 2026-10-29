@@ -35,6 +35,70 @@ const ORDER_POLICY={minimumOrderValue:200,freeDeliveryAbove:350,deliveryCharge:6
 function normalizedCart(){try{return(JSON.parse(localStorage.getItem('inkwave-cart-v4')||'[]')||[]).map(i=>i.customType==='polaroid'?({...i,quantity:1,photoCount:Number(i.photoCount)||0,customPrice:polaroidPrice(i.photoCount),photos:Array.isArray(i.photos)?i.photos:[],options:{size:`${Number(i.photoCount)||0} polaroid${Number(i.photoCount)===1?'':'s'}`,finish:'Custom photo print'}}):({...i,options:{size:i.options?.size||'A4',finish:'Matte Laminated'}}))}catch{return[]}}
 const state={activeProduct:null,activeArtwork:'',selection:{size:'A4',finish:'Matte Laminated'},cart:normalizedCart(),filter:'all',query:'',coupon:localStorage.getItem('inkwave-coupon-v4')||'',modalMockup:0,polaroidPhotos:[],secureQuote:null};
 const els={};
+function ensureDeliveryMarkup(){
+  const footer=$('#cartFooter');
+  if(footer){
+    const subtotalLine=$('#cartSubtotal')?.closest('.price-line');
+    if(subtotalLine?.querySelector('span')) subtotalLine.querySelector('span').textContent='Products before offers';
+    const savingsLine=$('#offerSavings')?.closest('.price-line');
+    let anchor=savingsLine||subtotalLine;
+
+    if(!$('#couponDiscountLine')){
+      const row=document.createElement('div');
+      row.className='price-line coupon-discount-line';
+      row.id='couponDiscountLine';
+      row.hidden=true;
+      row.innerHTML='<span>Coupon discount</span><strong id="couponDiscount">− ₹0</strong>';
+      anchor?.after(row); anchor=row;
+    }else anchor=$('#couponDiscountLine');
+
+    if(!$('#deliveryLine')){
+      const row=document.createElement('div');
+      row.className='price-line delivery-line';
+      row.id='deliveryLine';
+      row.innerHTML='<span>Delivery charge</span><strong id="deliveryCharge">₹69</strong>';
+      anchor?.after(row); anchor=row;
+    }else anchor=$('#deliveryLine');
+
+    if(!$('#deliveryMessage')){
+      const p=document.createElement('p');
+      p.className='delivery-message';
+      p.id='deliveryMessage';
+      p.textContent='Minimum order ₹200 · ₹69 delivery · free delivery above ₹350.';
+      anchor?.after(p); anchor=p;
+    }else anchor=$('#deliveryMessage');
+
+    if(!$('#eligibleProductValue')){
+      const row=document.createElement('div');
+      row.className='price-line eligible-line';
+      row.innerHTML='<span>Eligible product value</span><strong id="eligibleProductValue">₹0</strong>';
+      anchor?.after(row);
+    }
+
+    const totalLine=$('#cartTotal')?.closest('.price-line');
+    if(totalLine?.querySelector('span')) totalLine.querySelector('span').textContent='Final payable';
+
+    if(!footer.querySelector('.cart-policy-banner')){
+      const banner=document.createElement('div');
+      banner.className='cart-policy-banner';
+      banner.innerHTML='MINIMUM ORDER ₹200 <span>•</span> ₹69 DELIVERY <span>•</span> FREE ABOVE ₹350';
+      subtotalLine?.before(banner);
+    }
+
+    const small=footer.querySelector(':scope > small');
+    if(small) small.textContent='Minimum order ₹200 · free delivery above ₹350 · otherwise ₹69 delivery';
+  }
+
+  const payCard=document.querySelector('.razorpay-payment-card');
+  if(payCard && !$('#checkoutProducts')){
+    const breakdown=document.createElement('div');
+    breakdown.className='checkout-price-breakdown';
+    breakdown.setAttribute('aria-label','Order total');
+    breakdown.innerHTML='<div><span>Eligible product value</span><strong id="checkoutProducts">₹0</strong></div><div id="checkoutCouponLine" hidden><span>Coupon discount</span><strong id="checkoutCoupon">− ₹0</strong></div><div><span>Delivery</span><strong id="checkoutDelivery">₹69</strong></div><div class="checkout-price-final"><span>Final payable</span><strong id="checkoutFinal">₹0</strong></div>';
+    const note=$('#checkoutDeliveryNote');
+    if(note) note.before(breakdown); else payCard.appendChild(breakdown);
+  }
+}
 function mapElements(){Object.assign(els,{productGrid:$('#productGrid'),emptyState:$('#emptyState'),productModal:$('#productModal'),overlay:$('#overlay'),modalTitle:$('#modalTitle'),modalCategory:$('#modalCategory'),modalDescription:$('#modalDescription'),modalPrice:$('#modalPrice'),sizeOptions:$('#sizeOptions'),finishOptions:$('#finishOptions'),selectedSizeText:$('#selectedSizeText'),selectedOffer:$('#selectedOffer'),uploadBox:$('#uploadBox'),customUpload:$('#customUpload'),modalMockupTrack:$('#modalMockupTrack'),modalMockupDots:$('#modalMockupDots'),modalFullPageLink:$('#modalFullPageLink'),cartDrawer:$('#cartDrawer'),cartItems:$('#cartItems'),cartEmpty:$('#cartEmpty'),cartFooter:$('#cartFooter'),cartCount:$('#cartCount'),cartSubtotal:$('#cartSubtotal'),offerSavings:$('#offerSavings'),offerMessage:$('#offerMessage'),deliveryCharge:$('#deliveryCharge'),eligibleProductValue:$('#eligibleProductValue'),deliveryLine:$('#deliveryLine'),deliveryMessage:$('#deliveryMessage'),cartTotal:$('#cartTotal'),couponInput:$('#couponInput'),couponMessage:$('#couponMessage'),couponDiscountLine:$('#couponDiscountLine'),couponDiscount:$('#couponDiscount'),checkoutButton:$('#checkoutButton'),checkoutModal:$('#checkoutModal'),checkoutAmount:$('#checkoutAmount'),checkoutDeliveryNote:$('#checkoutDeliveryNote'),checkoutProducts:$('#checkoutProducts'),checkoutCouponLine:$('#checkoutCouponLine'),checkoutCoupon:$('#checkoutCoupon'),checkoutDelivery:$('#checkoutDelivery'),checkoutFinal:$('#checkoutFinal'),toast:$('#toast'),searchField:$('#searchField'),productSearch:$('#productSearch'),polaroidUpload:$('#polaroidUpload'),polaroidUploadCount:$('#polaroidUploadCount'),polaroidPreviewGrid:$('#polaroidPreviewGrid'),polaroidPreviewEmpty:$('#polaroidPreviewEmpty'),polaroidTotal:$('#polaroidTotal'),polaroidPriceHint:$('#polaroidPriceHint'),addPolaroidsToBag:$('#addPolaroidsToBag')})}
 async function loadSite(){
   siteData=window.INKWAVE_DEFAULT_DATA?clone(window.INKWAVE_DEFAULT_DATA):null;
@@ -345,4 +409,4 @@ async function startRazorpayCheckout(customer){
 function applyCoupon(){const code=els.couponInput.value.trim().toUpperCase(),valid=(siteData.settings.couponCode||'').toUpperCase();if(code===valid&&valid){state.coupon=code;localStorage.setItem('inkwave-coupon-v4',code);renderCart();showToast(`${code} applied`)}else{state.coupon='';localStorage.removeItem('inkwave-coupon-v4');renderCart();els.couponMessage.textContent=code?'That code is not valid.':''}}
 function bindEvents(){document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#reviewLightbox')?.hidden)closeReviewLightbox()});if(els.polaroidUpload)els.polaroidUpload.addEventListener('change',e=>handlePolaroidUpload(e.target.files));if(els.addPolaroidsToBag)els.addPolaroidsToBag.addEventListener('click',addPolaroidsToBag);const categoryTrack=$('#categoryGrid');$('#categoryPrev')?.addEventListener('click',()=>moveCategorySlider(-1));$('#categoryNext')?.addEventListener('click',()=>moveCategorySlider(1));if(categoryTrack){let categoryScrollTimer;categoryTrack.addEventListener('scroll',()=>{clearTimeout(categoryScrollTimer);categoryScrollTimer=setTimeout(updateCategorySliderUI,35)},{passive:true});categoryTrack.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();moveCategorySlider(-1)}if(e.key==='ArrowRight'){e.preventDefault();moveCategorySlider(1)}})}const reviewTrack=$('#reviewsTrack');if(reviewTrack){const scrollReviews=d=>reviewTrack.scrollBy({left:d*Math.min(reviewTrack.clientWidth*.88,420),behavior:'smooth'});$('#reviewPrev')?.addEventListener('click',()=>scrollReviews(-1));$('#reviewNext')?.addEventListener('click',()=>scrollReviews(1))}document.addEventListener('click',e=>{const reviewClose=e.target.closest('[data-review-lightbox-close]');if(reviewClose){closeReviewLightbox();return}const reviewPhoto=e.target.closest('[data-review-photo]');if(reviewPhoto){e.preventDefault();openReviewLightbox(reviewPhoto.dataset.reviewPhoto,reviewPhoto.dataset.reviewPhotoAlt||reviewPhoto.querySelector('img')?.alt||'Review photo');return}const pr=e.target.closest('[data-remove-polaroid-preview]');if(pr){state.polaroidPhotos.splice(Number(pr.dataset.removePolaroidPreview),1);renderPolaroidBuilder();return}const qv=e.target.closest('[data-quick-view]');if(qv){e.preventDefault();e.stopPropagation();const p=products.find(x=>x.id===qv.dataset.quickView);if(p)showProductModal(p,false);return}const md=e.target.closest('[data-modal-mockup]');if(md){state.modalMockup=Number(md.dataset.modalMockup)||0;updateModalMockup();return}const f=e.target.closest('[data-filter]');if(f){applyFilter(f.dataset.filter,false);return}const tf=e.target.closest('[data-theme-filter]');if(tf){e.preventDefault();applyFilter(tf.dataset.themeFilter);return}const cp=e.target.closest('[data-custom-product]');if(cp){e.preventDefault();showProductModal(null,true)}});els.productSearch.addEventListener('input',e=>{state.query=e.target.value;renderProducts()});$('#searchToggle').addEventListener('click',()=>{els.searchField.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>els.productSearch.focus(),400)});els.productModal.addEventListener('click',e=>{const o=e.target.closest('[data-option-type]');if(!o)return;state.selection[o.dataset.optionType]=o.dataset.option;[...o.parentElement.children].forEach(c=>c.classList.toggle('active',c===o));updateModalPrice()});$('#modalMockupPrev').addEventListener('click',()=>moveModalMockup(-1));$('#modalMockupNext').addEventListener('click',()=>moveModalMockup(1));els.customUpload.addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{showToast('Preparing your custom poster artwork…',1800);const compressed=await compressCustomPosterPhoto(f);setModalArtwork(compressed);showToast('Artwork ready · it will be attached to your order')}catch(err){showToast(err?.message||'Could not prepare this image.',5500);e.target.value=''}});$('#addToCartButton').addEventListener('click',addToCart);$$('[data-close-modal]').forEach(b=>b.addEventListener('click',()=>closeLayer(els.productModal)));$('#cartButton').addEventListener('click',openCart);$('#closeCart').addEventListener('click',closeCart);els.cartItems.addEventListener('click',e=>{const q=e.target.closest('[data-qty]'),rm=e.target.closest('[data-remove]');if(q){const i=state.cart.find(x=>x.key===q.dataset.key);if(i){i.quantity=Math.max(1,Math.min(50,i.quantity+(q.dataset.qty==='plus'?1:-1)));saveCart()}}if(rm){state.cart=state.cart.filter(i=>i.key!==rm.dataset.remove);saveCart()}});$('#applyCoupon').addEventListener('click',applyCoupon);els.couponInput.addEventListener('keydown',e=>{if(e.key==='Enter')applyCoupon()});$('#checkoutButton').addEventListener('click',async()=>{const totals=calculateCart();if(!totals.minimumMet){const more=Math.max(0,ORDER_POLICY.minimumOrderValue-totals.merchandiseSubtotal);showToast(`Minimum order is ${formatINR(ORDER_POLICY.minimumOrderValue)} · add ${formatINR(more)} more.`,4500);return}const button=els.checkoutButton,oldText=button.textContent;button.disabled=true;button.textContent='CHECKING DELIVERY…';try{const quote=await getSecureQuote();state.secureQuote=quote;renderCheckoutBreakdown(quote);closeCart();setTimeout(()=>{openLayer(els.checkoutModal);els.checkoutModal.scrollTop=0;requestAnimationFrame(()=>{els.checkoutModal.scrollTop=0})},220)}catch(err){console.error(err);showToast(err?.message||'Could not verify delivery and checkout total.',6500)}finally{button.disabled=false;button.textContent=oldText;renderCart()}});$$('[data-close-checkout]').forEach(b=>b.addEventListener('click',()=>closeLayer(els.checkoutModal)));$('#checkoutForm').addEventListener('submit',e=>{e.preventDefault();startRazorpayCheckout(Object.fromEntries(new FormData(e.target)))});els.overlay.addEventListener('click',()=>{if(els.productModal.classList.contains('visible'))closeLayer(els.productModal);else if(els.checkoutModal.classList.contains('visible'))closeLayer(els.checkoutModal);else closeCart()});$('#menuButton').addEventListener('click',e=>{const m=$('#mobileMenu'),open=m.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',String(open))});$$('#mobileMenu a').forEach(a=>a.addEventListener('click',closeMobileMenu));document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement?.dataset?.quickView){e.preventDefault();const p=products.find(x=>x.id===document.activeElement.dataset.quickView);if(p)showProductModal(p,false)}if(e.key!=='Escape')return;if(els.productModal.classList.contains('visible'))closeLayer(els.productModal);else if(els.checkoutModal.classList.contains('visible'))closeLayer(els.checkoutModal);else if(els.cartDrawer.classList.contains('open'))closeCart();else closeMobileMenu()})}
 let homeResizeTimer;window.addEventListener('resize',()=>{clearTimeout(homeResizeTimer);homeResizeTimer=setTimeout(()=>{if(state.filter==='all'&&!state.query.trim())renderProducts();updateCategorySliderUI()},140)});
-mapElements();loadSite().catch(e=>{console.error(e);showToast('Store preview could not start. Check that all website files are kept together.',6000)});
+ensureDeliveryMarkup();mapElements();loadSite().catch(e=>{console.error(e);showToast('Store preview could not start. Check that all website files are kept together.',6000)});
