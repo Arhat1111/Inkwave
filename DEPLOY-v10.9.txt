@@ -7,7 +7,9 @@ Worker URL: https://inkwaves-payments.arhatshah123.workers.dev
 Required Worker health version: 10.7
 Rules:
 - eligible product value below ₹200: checkout blocked
-- ₹200 through ₹350: ₹69 delivery
-- above ₹350: free delivery
+- ₹200 through ₹349.99: ₹69 delivery
+- ₹350 or more: free delivery
 
 Upload ALL files and folders, including js/. Do not upload only index.html.
+
+Cloudflare Worker must also be updated; source not included in supplied ZIP.

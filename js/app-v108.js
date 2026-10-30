@@ -64,7 +64,7 @@ function ensureDeliveryMarkup(){
       const p=document.createElement('p');
       p.className='delivery-message';
       p.id='deliveryMessage';
-      p.textContent='Minimum order ₹200 · ₹69 delivery · free delivery above ₹350.';
+      p.textContent='Minimum order ₹200 · ₹69 delivery · free delivery at ₹350 or more.';
       anchor?.after(p); anchor=p;
     }else anchor=$('#deliveryMessage');
 
@@ -81,12 +81,12 @@ function ensureDeliveryMarkup(){
     if(!footer.querySelector('.cart-policy-banner')){
       const banner=document.createElement('div');
       banner.className='cart-policy-banner';
-      banner.innerHTML='MINIMUM ORDER ₹200 <span>•</span> ₹69 DELIVERY <span>•</span> FREE ABOVE ₹350';
+      banner.innerHTML='MINIMUM ORDER ₹200 <span>•</span> ₹69 DELIVERY <span>•</span> FREE AT ₹350+';
       subtotalLine?.before(banner);
     }
 
     const small=footer.querySelector(':scope > small');
-    if(small) small.textContent='Minimum order ₹200 · free delivery above ₹350 · otherwise ₹69 delivery';
+    if(small) small.textContent='Minimum order ₹200 · free delivery at ₹350 or more · otherwise ₹69 delivery';
   }
 
   const payCard=document.querySelector('.razorpay-payment-card');
@@ -216,7 +216,7 @@ function calculateCart(){
   const coupon=(state.coupon===validCoupon&&validCoupon)?Math.round(merchandiseSubtotal*(Number(siteData.settings.couponPercent)||0)/100):0;
   const discountedMerchandise=Math.max(0,merchandiseSubtotal-coupon);
   const minimumMet=merchandiseSubtotal>=ORDER_POLICY.minimumOrderValue;
-  const freeDelivery=merchandiseSubtotal>ORDER_POLICY.freeDeliveryAbove;
+  const freeDelivery=merchandiseSubtotal>=ORDER_POLICY.freeDeliveryAbove;
   const shipping=freeDelivery?0:ORDER_POLICY.deliveryCharge;
   const total=discountedMerchandise+shipping;
   return{rawSubtotal,merchandiseSubtotal,discountedMerchandise,offerSavings,coupon,shipping,total,minimumMet,freeDelivery,sizePrices,pricingSource:'browser-preview-v10.8'};
@@ -245,8 +245,8 @@ function renderCheckoutBreakdown(source){
   if(els.checkoutAmount)els.checkoutAmount.textContent=formatINR(t.total);
   if(els.checkoutDeliveryNote){
     els.checkoutDeliveryNote.textContent=t.freeDelivery
-      ? `Free delivery applied because the eligible product value is above ${formatINR(ORDER_POLICY.freeDeliveryAbove)}.`
-      : `${formatINR(ORDER_POLICY.deliveryCharge)} delivery added. Free delivery applies only when the eligible product value is above ${formatINR(ORDER_POLICY.freeDeliveryAbove)}.`;
+      ? `Free delivery applied because the eligible product value is at least ${formatINR(ORDER_POLICY.freeDeliveryAbove)}.`
+      : `${formatINR(ORDER_POLICY.deliveryCharge)} delivery added. Free delivery applies only when the eligible product value is at least ${formatINR(ORDER_POLICY.freeDeliveryAbove)}.`;
   }
 }
 async function getSecureQuote(){
@@ -307,7 +307,7 @@ function renderCart(){
       els.deliveryMessage.textContent=`FREE delivery unlocked · eligible product value ${formatINR(t.merchandiseSubtotal)}.`;
       els.deliveryMessage.className='delivery-message free-delivery';
     }else{
-      const more=Math.max(1,ORDER_POLICY.freeDeliveryAbove-t.merchandiseSubtotal+1);
+      const more=Math.max(1,ORDER_POLICY.freeDeliveryAbove-t.merchandiseSubtotal);
       els.deliveryMessage.textContent=`${formatINR(ORDER_POLICY.deliveryCharge)} delivery added · add ${formatINR(more)} more in products for FREE delivery.`;
       els.deliveryMessage.className='delivery-message';
     }
